@@ -8,8 +8,6 @@
 // #include "esp_io_expander_tca9554.h"
 #include "lvgl.h"
 #include "esp_lvgl_port.h"
-#include "lvgl_ui.h"
-// #include "../components/lvgl_ui/lvgl_ui.h"
 #include "esp_check.h"
 #include "esp_log.h"
 #include "esp_flash.h"
@@ -198,8 +196,7 @@ void tile_init(lv_obj_t *parent)
     // lv_label_set_text(label_sd, "--- MB");
 }
 
-#include "../components/ui/ui.h"
-// #include "ui.h"
+#include "ui.h"
 
 void app_main(void){
 
