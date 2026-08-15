@@ -4,7 +4,7 @@
 #include "esp_lcd_panel_ops.h"
 
 #include "actions.h"
-#include "../main/common.h"
+#include "common.h"
 
 static lv_obj_t *touch_test_overlay;
 
