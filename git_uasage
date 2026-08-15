@@ -1,0 +1,36 @@
+token: gh_______________________________________________________FWj
+
+Uploading VSCode Project to GitHub
+
+To upload a VSCode project to GitHub, follow these steps:
+    Initialize a Git Repository: Open your project in VSCode and open the terminal. 
+    Run the following command to initialize a Git repository: git init
+        git init
+    Add Files to the Repository: Add all your project files to the repository using: 
+        git add .
+    Commit the Changes: Commit your changes with a message: 
+        git commit -m "Initial commit"
+    Create a Repository on GitHub: Go to GitHub and create a new repository. Do not initialize it with a README, .gitignore, or license.
+    Add Remote Repository: Copy the URL of your new GitHub repository and add it as a remote in your local repository: 
+        git remote add origin <repository URL>
+    Push to GitHub: Push your local repository to GitHub: 
+        git push -u origin master
+
+Example
+# Initialize a new Git repository
+    git init
+# Add all files to the staging area
+    git add
+# Commit the changes with a message
+    git commit -m "Initial commit"
+# Add the remote repository URL
+    git remote add origin https://github.com/yourusername/your-repo.git
+# Push the changes to the master branch on GitHub
+    git push -u origin master
+
+
+***For auth error:
+        git config --global user.name "mdpozna"
+        git config --global user.emai "marius.pozna@gmail.com"
+
+        When prompted use the token from auth app.
