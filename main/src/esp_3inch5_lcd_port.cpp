@@ -23,8 +23,8 @@
 #include <esp_system.h>
 
 #define EXAMPLE_SPI_HOST SPI2_HOST
-#define EXAMPLE_LCD_PIXEL_CLOCK_HZ (20 * 1000 * 1000)
-// #define EXAMPLE_LCD_PIXEL_CLOCK_HZ (80 * 1000 * 1000) // Default pixel clock frequency for the LCD panel, 80MHz is the maximum for ST7796
+// #define EXAMPLE_LCD_PIXEL_CLOCK_HZ (20 * 1000 * 1000)
+#define EXAMPLE_LCD_PIXEL_CLOCK_HZ (80 * 1000 * 1000) // Default pixel clock frequency for the LCD panel, 80MHz is the maximum for ST7796
 
 #define EXAMPLE_PIN_LCD_MISO GPIO_NUM_NC
 #define EXAMPLE_PIN_LCD_MOSI GPIO_NUM_11
