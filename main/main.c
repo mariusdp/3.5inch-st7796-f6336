@@ -8,8 +8,6 @@
 // #include "esp_io_expander_tca9554.h"
 #include "lvgl.h"
 #include "esp_lvgl_port.h"
-// #include "lvgl_ui.h"
-// #include "../components/lvgl_ui/lvgl_ui.h"
 #include "esp_check.h"
 #include "esp_log.h"
 #include "esp_flash.h"
