@@ -66,3 +66,44 @@ When you make updates:
 
 
 ####################################################################################################################################
+
+Using VS Code GUI
+
+Open your repository in VS Code.
+Select the current branch in the Status Bar at the bottom left or open the Command Palette (Ctrl+Shift+P / Cmd+Shift+P) and run Git: 
+    Create Branch.
+Enter a descriptive branch name, e.g., feature/user-authentication or bugfix/login-error 
+
+1.
+Choose the source branch (usually main or develop) from which to create the new branch.
+VS Code will switch to the new branch automatically.
+To publish the branch to GitHub, click Publish Branch in the Source Control view 
+
+2.
+If you have the GitHub Pull Requests and Issues extension, you can also create a branch directly from a GitHub issue, which pre-fills the pull request for you 
+
+3.
+Using VS Code Terminal
+Open the integrated terminal in VS Code.
+Make sure your current branch is up-to-date:
+git pull origin main
+Create and switch to a new branch in one step:
+git checkout -b new-branch-name
+Alternatively, you can create and switch in two steps:
+git branch new-branch-name
+git checkout new-branch-name
+Push the new branch to GitHub:
+git push -u origin new-branch-name
+The -u flag sets the upstream so future git push and git pull commands default to this branch 
+
+
+4.
+Best Practices
+Use descriptive branch names to indicate the purpose of the branch.
+Always pull the latest changes from the remote branch before creating a new branch to avoid conflicts.
+Merge your feature branch back into main or develop once your work is complete, using Git: Merge Branch in VS Code or the terminal.
+Delete branches that are no longer needed to keep your repository clean, either locally or remotely 
+
+
+5.
+By following these steps, you can efficiently create, switch, and push new branches in VS Code while keeping your GitHub repository organized and up-to-date.
