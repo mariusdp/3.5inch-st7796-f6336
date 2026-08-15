@@ -23,7 +23,8 @@
 #include <esp_system.h>
 
 #define EXAMPLE_SPI_HOST SPI2_HOST
-#define EXAMPLE_LCD_PIXEL_CLOCK_HZ (80 * 1000 * 1000)
+#define EXAMPLE_LCD_PIXEL_CLOCK_HZ (20 * 1000 * 1000)
+// #define EXAMPLE_LCD_PIXEL_CLOCK_HZ (80 * 1000 * 1000) // Default pixel clock frequency for the LCD panel, 80MHz is the maximum for ST7796
 
 #define EXAMPLE_PIN_LCD_MISO GPIO_NUM_NC
 #define EXAMPLE_PIN_LCD_MOSI GPIO_NUM_11
@@ -96,9 +97,10 @@ void esp_3inch5_display_port_init(esp_lcd_panel_io_handle_t *io_handle, esp_lcd_
 
     esp_lcd_panel_dev_config_t panel_config = {};
     panel_config.reset_gpio_num = EXAMPLE_PIN_LCD_RST;
-    panel_config.rgb_ele_order = LCD_RGB_ELEMENT_ORDER_BGR;
-    panel_config.bits_per_pixel = 16;
-
+    panel_config.rgb_ele_order = LCD_RGB_ELEMENT_ORDER_BGR; // Default is RGB, but ST7796 is BGR
+    // panel_config.rgb_ele_order = LCD_RGB_ELEMENT_ORDER_RGB;
+    panel_config.bits_per_pixel = 16; // 18 bits per pixel for RGB666
+    // panel_config.bits_per_pixel = 16; //default is 16, for RGB565. 18 for RGB666. 24 for RGB888
     
     // ESP_ERROR_CHECK(esp_lcd_new_panel_st7796(*io_handle, &panel_config, panel_handle));
     esp_lcd_new_panel_st7796(*io_handle, &panel_config, panel_handle); 

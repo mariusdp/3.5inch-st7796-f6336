@@ -4,6 +4,7 @@
 #include <lvgl.h>
 
 #include "screens.h"
+#include "wifi_tile.h"
 
 #ifdef __cplusplus
 extern "C" {

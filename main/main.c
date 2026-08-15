@@ -1,25 +1,23 @@
 ﻿#include "stdio.h"
-#include "nvs_flash.h"
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include "freertos/semphr.h"
-#include "driver/gpio.h"
-#include "driver/i2c_master.h"
-// #include "esp_io_expander_tca9554.h"
-#include "lvgl.h"
-#include "esp_lvgl_port.h"
-// #include "lvgl_ui.h"
-// #include "../components/lvgl_ui/lvgl_ui.h"
-#include "esp_check.h"
-#include "esp_log.h"
-#include "esp_flash.h"
-#include "iot_button.h"
-#include "button_gpio.h"
-#include "esp_wifi_port.h"
-#include "esp_3inch5_lcd_port.h"
-#include "esp_psram.h"
-#include "esp_private/esp_clk.h"
-// #include "esp_sdcard_port.h"
+// #include "nvs_flash.h"
+// #include "freertos/FreeRTOS.h"
+// #include "freertos/task.h"
+// #include "freertos/semphr.h"
+// #include "driver/gpio.h"
+// #include "driver/i2c_master.h"
+// // #include "esp_io_expander_tca9554.h"
+// #include "lvgl.h"
+// #include "esp_lvgl_port.h"
+// #include "esp_check.h"
+// #include "esp_log.h"
+// #include "esp_flash.h"
+// #include "iot_button.h"
+// #include "button_gpio.h"
+// #include "esp_wifi_port.h"
+// #include "esp_3inch5_lcd_port.h"
+// #include "esp_psram.h"
+// #include "esp_private/esp_clk.h"
+// // #include "esp_sdcard_port.h"
 
 #include "common.h"
 
@@ -40,7 +38,6 @@ bool touch_test_done = false;
 // sdmmc_card_t *card = NULL;
 int bk_brightness = 30;
 
-#include "driver/temperature_sensor.h"
 temperature_sensor_handle_t temp_sensor = NULL;
 lv_obj_t *label_brightness;
 lv_obj_t *label_flash;
@@ -49,6 +46,9 @@ lv_obj_t *label_chip_temp;
 lv_obj_t *label_chip_freq;
 // lv_obj_t *label_sd;
 
+uint32_t flash_size;
+uint32_t cpu_freq;
+// uint32_t psram_size;
 
 void i2c_bus_init(void);
 // void io_expander_init(void);
@@ -107,9 +107,6 @@ static void btn_test_event_handler(lv_event_t *e)
 }
 
 
-uint32_t flash_size;
-uint32_t cpu_freq;
-// uint32_t psram_size;
 
 void system_init(void)
 {
@@ -118,9 +115,6 @@ void system_init(void)
 
     cpu_freq = esp_clk_cpu_freq();
     // lv_label_set_text_fmt(label_chip_freq, "%d MHz", (int)(cpu_freq / 1000 / 1000));
-
-    // psram_size = esp_psram_get_size();
-    // lv_label_set_text_fmt(label_psram, "%d MB", (int)(psram_size / 1024 / 1024));
 
     temperature_sensor_config_t temp_sensor_config = TEMPERATURE_SENSOR_CONFIG_DEFAULT(10, 80);
     temperature_sensor_install(&temp_sensor_config, &temp_sensor);
