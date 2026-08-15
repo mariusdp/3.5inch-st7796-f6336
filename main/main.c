@@ -8,6 +8,8 @@
 // #include "esp_io_expander_tca9554.h"
 #include "lvgl.h"
 #include "esp_lvgl_port.h"
+// #include "lvgl_ui.h"
+// #include "../components/lvgl_ui/lvgl_ui.h"
 #include "esp_check.h"
 #include "esp_log.h"
 #include "esp_flash.h"
@@ -131,13 +133,11 @@ void tile_init(lv_obj_t *parent)
     /*Create a list*/
     lv_obj_t *list = lv_list_create(parent);
     lv_obj_t *lable = lv_label_create(parent);
-    // lv_obj_set_style_text_font(lable, &lv_font_montserrat_14, LV_PART_MAIN);
     lv_obj_set_style_text_font(lable, &lv_font_montserrat_20, LV_PART_MAIN);
     lv_label_set_text(lable, "System");
     lv_obj_align(lable, LV_ALIGN_TOP_MID, 0, 3);
 
     lv_obj_set_size(list, lv_pct(95), lv_pct(80));
-    // lv_obj_center(list);
     lv_obj_align(list, LV_ALIGN_TOP_MID, 0, 30);
 
     lv_obj_t *btn = lv_btn_create(parent);
@@ -182,11 +182,6 @@ void tile_init(lv_obj_t *parent)
     lv_obj_t *label_ram = lv_label_create(list_item);
     lv_label_set_text(label_ram, "512 KB");
 
-    // list_item = lv_list_add_btn(list, NULL, "PSRAM");
-    // label_psram = lv_label_create(list_item);
-    // lv_label_set_text_fmt(label_psram, "%d MB", (int)(psram_size / 1024 / 1024));
-
-    // system_init();
     list_item = lv_list_add_btn(list, NULL, "Flash");
     label_flash = lv_label_create(list_item);
     lv_label_set_text_fmt(label_flash, "%d MB", (int)(flash_size / 1024 / 1024));
