@@ -34,3 +34,35 @@ Example
         git config --global user.emai "marius.pozna@gmail.com"
 
         When prompted use the token from auth app.
+
+
+
+####################################################################################################################################
+
+TO UPDATE CHANGES:
+1. Initialize Git Repository
+    Click the Source Control icon (or press Ctrl + Shift + G).
+    Click Initialize Repository to start tracking changes.
+
+2. Commit Your Changes
+    In the Source Control panel, select files to stage (click the + icon).
+    Enter a commit message in the text box.
+    Click the checkmark (✔) to commit.
+
+3. Publish to GitHub
+    In the Source Control panel, click Publish to GitHub.
+    Choose Public or Private repository.
+    Select files you want to upload and confirm.
+    VS Code will create the repo on GitHub and push your code.
+
+4. Push Future Changes
+When you make updates:
+    Stage changes (+ icon).
+    Commit with a message.
+    Click the three dots (…) → Push.
+
+5. Verify on GitHub
+
+
+
+####################################################################################################################################
