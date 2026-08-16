@@ -13,9 +13,10 @@ enum ScreensEnum {
     _SCREEN_ID_FIRST = 1,
     SCREEN_ID_MAIN = 1,
     SCREEN_ID_STRING = 2,
-    SCREEN_ID_CONTROL = 3,
-    SCREEN_ID_SETTINGS = 4,
-    _SCREEN_ID_LAST = 4
+    SCREEN_ID_FAULTS = 3,
+    SCREEN_ID_CONTROL = 4,
+    SCREEN_ID_SETTINGS = 5,
+    _SCREEN_ID_LAST = 5
 };
 
 typedef struct _objects_t {
@@ -33,11 +34,13 @@ typedef struct _objects_t {
     lv_obj_t *header_2;
     lv_obj_t *header_3;
     lv_obj_t *header_4;
+    lv_obj_t *header_5;
 
     lv_obj_t *dropdown_0;
     lv_obj_t *dropdown_1;
     lv_obj_t *dropdown_2;
     lv_obj_t *dropdown_3;
+    lv_obj_t *dropdown_4;
 } objects_t;
 
 extern objects_t objects;
@@ -47,6 +50,9 @@ void tick_screen_main();
 
 void create_screen_string();
 void tick_screen_string();
+
+void create_screen_faults();
+void tick_screen_faults();
 
 void create_screen_control();
 void tick_screen_control();
