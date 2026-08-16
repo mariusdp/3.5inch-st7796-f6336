@@ -12,7 +12,7 @@ static void touch_test_back_event_cb(lv_event_t *event)
 {
     lv_obj_del_async(touch_test_overlay);
     touch_test_overlay = NULL;
-    action_button3_pressed(event);
+    // action_button3_pressed(event);
 }
 
 static void touch_test_draw_event_cb(lv_event_t *event)

@@ -26,13 +26,18 @@ typedef struct _objects_t {
     lv_obj_t *control;
     lv_obj_t *settings;
     lv_obj_t *header_1;
-    lv_obj_t *bk_light;
+    lv_obj_t *header_2;
+    lv_obj_t *header_3;
+    lv_obj_t *header_4;
+    lv_obj_t *ena_charge;
+    lv_obj_t *ena_discharge;
+    lv_obj_t *str_recovery;
+    lv_obj_t *charge_hw;
+    lv_obj_t *discharge_hw;
+    lv_obj_t *clear_flt;
     lv_obj_t *can_off;
     lv_obj_t *can_on;
-    lv_obj_t *header_4;
     lv_obj_t *header_5;
-    lv_obj_t *header_3;
-    lv_obj_t *header_2;
 } objects_t;
 
 extern objects_t objects;
