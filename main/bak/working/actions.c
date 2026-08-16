@@ -34,16 +34,12 @@ void action_main_dropdown_changed(lv_event_t * e)
         lv_dropdown_set_selected(objects.dropdown_1, 1);
         break;
     case 2:
-        loadScreen(SCREEN_ID_FAULTS);
+        loadScreen(SCREEN_ID_CONTROL);
         lv_dropdown_set_selected(objects.dropdown_2, 2);
         break;
     case 3:
-        loadScreen(SCREEN_ID_CONTROL);
-        lv_dropdown_set_selected(objects.dropdown_3, 3);
-        break;
-    case 4:
         loadScreen(SCREEN_ID_SETTINGS);
-        lv_dropdown_set_selected(objects.dropdown_4, 4);
+        lv_dropdown_set_selected(objects.dropdown_3, 3);
         break;
     default:
         break;
