@@ -25,22 +25,14 @@ typedef struct _objects_t {
     lv_obj_t *faults;
     lv_obj_t *control;
     lv_obj_t *settings;
+    lv_obj_t *header_1;
     lv_obj_t *bk_light;
-    lv_obj_t *obj0;
     lv_obj_t *can_off;
     lv_obj_t *can_on;
-    
-    lv_obj_t *header_1;
-    lv_obj_t *header_2;
-    lv_obj_t *header_3;
     lv_obj_t *header_4;
     lv_obj_t *header_5;
-
-    lv_obj_t *dropdown_0;
-    lv_obj_t *dropdown_1;
-    lv_obj_t *dropdown_2;
-    lv_obj_t *dropdown_3;
-    lv_obj_t *dropdown_4;
+    lv_obj_t *header_3;
+    lv_obj_t *header_2;
 } objects_t;
 
 extern objects_t objects;

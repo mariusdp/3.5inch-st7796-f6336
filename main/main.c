@@ -1,25 +1,6 @@
 ﻿#include "stdio.h"
-// #include "nvs_flash.h"
-// #include "freertos/FreeRTOS.h"
-// #include "freertos/task.h"
-// #include "freertos/semphr.h"
-// #include "driver/gpio.h"
-// #include "driver/i2c_master.h"
-// // #include "esp_io_expander_tca9554.h"
-// #include "lvgl.h"
-// #include "esp_lvgl_port.h"
-// #include "esp_check.h"
-// #include "esp_log.h"
-// #include "esp_flash.h"
-// #include "iot_button.h"
-// #include "button_gpio.h"
-// #include "esp_wifi_port.h"
-// #include "esp_3inch5_lcd_port.h"
-// #include "esp_psram.h"
-// #include "esp_private/esp_clk.h"
-// // #include "esp_sdcard_port.h"
-
 #include "common.h"
+#include "ui.h"
 
 const char *TAG = "factory";
 
@@ -185,7 +166,6 @@ void tile_init(lv_obj_t *parent)
     // lv_label_set_text(label_sd, "--- MB");
 }
 
-#include "ui.h"
 
 void app_main(void){
 
@@ -216,8 +196,10 @@ void app_main(void){
     esp_wifi_port_init("eero 15", "Znyk97911986Miha!");
 
     esp_3inch5_brightness_port_init();
-    esp_3inch5_brightness_port_set(bk_brightness);
-    printf("Backlight brightness set to %d%%\n", (int)bk_brightness);
+    esp_3inch5_brightness_port_set(lcd_bkl);
+    // printf("Backlight brightness set to %d%%\n", (int)lcd_bkl);
+    // esp_3inch5_brightness_port_set(bk_brightness);
+    // printf("Backlight brightness set to %d%%\n", (int)bk_brightness);
     lv_port_init();
     
     button_init();
@@ -383,65 +365,3 @@ void button_init(void)
     // iot_button_register_cb(btn, BUTTON_LONG_PRESS_UP, NULL, button_event_cb, NULL);
     // iot_button_register_cb(btn, BUTTON_PRESS_END, NULL, button_event_cb, NULL);
 }
-
-// void touch_test(void)
-// {
-//     uint16_t touchpad_x[1] = {0};
-//     uint16_t touchpad_y[1] = {0};
-//     uint8_t touchpad_cnt = 0;
-//     uint16_t color_arr[16] = {0};
-//     lv_obj_t *lable = NULL;
-
-//     for (int i = 0; i < 16; i++)
-//     {
-//         color_arr[i] = 0xf800;
-//     }
-//     if (lvgl_port_lock(0))
-//     {
-//         lable = lv_label_create(lv_scr_act());
-//         lv_label_set_text(lable, "Touch testing mode \nExit with BOOT button");
-//         lv_obj_center(lable);
-//         lvgl_port_unlock();
-//     }
-//     vTaskDelay(pdMS_TO_TICKS(500));
-//     if (lvgl_port_lock(0))
-//     {
-//         while (!touch_test_done)
-//         {
-//             /* Read data from touch controller into memory */
-//             esp_lcd_touch_read_data(touch_handle);
-
-//             /* Read data from touch controller */
-//             esp_lcd_touch_point_data_t point_data[1];
-//             uint8_t point_num = 0;
-//             esp_lcd_touch_get_data(touch_handle, point_data, &point_num, 1);
-            
-//             bool touchpad_pressed = (point_num > 0);
-//             if (touchpad_pressed && point_num > 0)
-//             {
-//                 touchpad_x[0] = point_data[0].x;
-//                 touchpad_y[0] = point_data[0].y;
-//                 touchpad_cnt = point_num;
-                
-//                 // touchpad_x[0] = EXAMPLE_LCD_H_RES - 1 - touchpad_x[0];
-
-//                 if (touchpad_x[0] < 2)
-//                     touchpad_x[0] = 2;
-//                 else if (touchpad_x[0] > EXAMPLE_LCD_H_RES - 2 - 1)
-//                     touchpad_x[0] = EXAMPLE_LCD_H_RES - 2 - 1;
-
-//                 if (touchpad_y[0] < 2)
-//                     touchpad_y[0] = 2;
-//                 else if (touchpad_y[0] > EXAMPLE_LCD_V_RES - 2 - 1)
-//                     touchpad_y[0] = EXAMPLE_LCD_V_RES - 2 - 1;
-
-//                 esp_lcd_panel_draw_bitmap(panel_handle, touchpad_x[0] - 2, touchpad_y[0] - 2, touchpad_x[0] + 2, touchpad_y[0] + 2, color_arr);
-//                 printf("Touch at (%d, %d)\n", touchpad_x[0], touchpad_y[0]);
-//             }
-//             vTaskDelay(pdMS_TO_TICKS(10));
-//         }
-//         lv_obj_del(lable);
-//         lvgl_port_unlock();
-//     }
-    
-// }

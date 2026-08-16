@@ -38,10 +38,13 @@
 #include "driver/temperature_sensor.h"
 // #include "esp_sdcard_port.h"
 
+#include "controls.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 
+#define DEBUG
 
 #define EXAMPLE_PIN_NUM_BACKLIGHT  6
 #define EXAMPLE_LCD_BK_LIGHT_ON_LEVEL  1
@@ -67,7 +70,7 @@ extern "C" {
 
 #define I2C_PORT_NUM 0
 
-#define LV_COLOR_16_SWAP 0
+// #define LV_COLOR_16_SWAP 0
 
 // Global variable declarations (definitions are in main.c)
 extern const char *TAG;

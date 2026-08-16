@@ -4,7 +4,6 @@
 #include <lvgl.h>
 
 #include "screens.h"
-#include "wifi_tile.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -14,7 +13,6 @@ void ui_init();
 void ui_tick();
 
 void loadScreen(enum ScreensEnum screenId);
-void loadScreenBack(enum ScreensEnum screenId);
 
 #ifdef __cplusplus
 }

@@ -145,7 +145,7 @@ void button5_init(lv_obj_t *parent)
     lv_label_set_text(lable, "Main");
     lv_obj_center(lable);
     lv_obj_align(btn1, LV_ALIGN_TOP_LEFT, 130, 5);
-    // lv_obj_add_event_cb(btn1, action_button3_pressed, LV_EVENT_PRESSED, NULL);
+    lv_obj_add_event_cb(btn1, action_button3_pressed, LV_EVENT_PRESSED, NULL);
 
     lv_obj_t *sw = lv_switch_create(parent);
     lv_obj_align(sw, LV_ALIGN_TOP_RIGHT, -20, 10);

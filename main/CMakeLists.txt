@@ -1,4 +1,5 @@
 file(GLOB_RECURSE srcs "main.c" "src/*.c" "src/*.cpp" "ui/*.c" "ui/images/*.c" )
+list(APPEND srcs "src/controls.c")
 
 idf_component_register(SRCS ${srcs}
                     INCLUDE_DIRS "." "./include" "./ui"

@@ -19,29 +19,33 @@ void action_button7_pressed(lv_event_t * e) {touch_test_init(lv_scr_act());} // 
     SCREEN_ID_SETTINGS = 4,
     _SCREEN_ID_LAST = 4
     */
-// void action_main_dropdown_changed(lv_event_t * e)
-// {
-//     lv_obj_t *dropdown = lv_event_get_target(e);
+void action_main_dropdown_changed(lv_event_t * e)
+{
+    lv_obj_t *dropdown = lv_event_get_target(e);
 
-//     switch (lv_dropdown_get_selected(dropdown))
-//     {
-//     case 0:
-//         loadScreen(SCREEN_ID_MAIN);
-//         lv_dropdown_set_selected(objects.dropdown_0, 0);
-//         break;
-//     case 1:
-//         loadScreen(SCREEN_ID_SCR2);
-//         lv_dropdown_set_selected(objects.dropdown_1, 1);
-//         break;
-//     case 2:
-//         loadScreen(SCREEN_ID_LIDIA_HOME);
-//         lv_dropdown_set_selected(objects.dropdown_2, 2);
-//         break;
-//     case 3:
-//         loadScreen(SCREEN_ID_FT);
-//         lv_dropdown_set_selected(objects.dropdown_3, 3);
-//         break;
-//     default:
-//         break;
-//     }
-// }
+    switch (lv_dropdown_get_selected(dropdown))
+    {
+    case 0:
+        loadScreen(SCREEN_ID_MAIN);
+        lv_dropdown_set_selected(objects.dropdown_0, 0);
+        break;
+    case 1:
+        loadScreen(SCREEN_ID_STRING);
+        lv_dropdown_set_selected(objects.dropdown_1, 1);
+        break;
+    case 2:
+        loadScreen(SCREEN_ID_FAULTS);
+        lv_dropdown_set_selected(objects.dropdown_2, 2);
+        break;
+    case 3:
+        loadScreen(SCREEN_ID_CONTROL);
+        lv_dropdown_set_selected(objects.dropdown_3, 3);
+        break;
+    case 4:
+        loadScreen(SCREEN_ID_SETTINGS);
+        lv_dropdown_set_selected(objects.dropdown_4, 4);
+        break;
+    default:
+        break;
+    }
+}
