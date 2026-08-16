@@ -13,22 +13,10 @@ extern "C" {
 // Flow global variables
 
 enum FlowGlobalVariables {
-    FLOW_GLOBAL_VARIABLE_SELECTED_USER = 0,
-    FLOW_GLOBAL_VARIABLE_TOGGLE_BUTTON_STATE = 1,
-    FLOW_GLOBAL_VARIABLE_LIST_SCROLLBAR_STATE = 2,
-    FLOW_GLOBAL_VARIABLE_OPTIONS_LIST = 3
+    FLOW_GLOBAL_VARIABLE_NONE
 };
 
 // Native global variables
-
-extern int32_t get_var_selected_user();
-extern void set_var_selected_user(int32_t value);
-extern int32_t get_var_toggle_button_state();
-extern void set_var_toggle_button_state(int32_t value);
-extern undefinedget_var_list_scrollbar_state();
-extern void set_var_list_scrollbar_state(undefinedvalue);
-extern undefinedget_var_options_list();
-extern void set_var_options_list(undefinedvalue);
 
 #ifdef __cplusplus
 }

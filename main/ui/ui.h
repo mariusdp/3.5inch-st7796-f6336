@@ -13,7 +13,6 @@ void ui_init();
 void ui_tick();
 
 void loadScreen(enum ScreensEnum screenId);
-void loadScreenBack(enum ScreensEnum screenId);
 
 #ifdef __cplusplus
 }
