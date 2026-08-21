@@ -125,7 +125,15 @@ void button5_init(lv_obj_t *parent)
 
     lv_obj_t *lable = lv_label_create(parent);
     // lv_obj_set_style_text_font(lable, &lv_font_montserrat_14, LV_PART_MAIN);
-    lv_obj_set_style_text_font(lable, &lv_font_montserrat_20, LV_PART_MAIN);
+    #if LV_FONT_MONTSERRAT_16
+        // { "MONTSERRAT_16", &lv_font_montserrat_16 };
+        lv_obj_set_style_text_font(lable, &lv_font_montserrat_16, LV_PART_MAIN);
+    #endif
+    #if LV_FONT_MONTSERRAT_20
+        // { "MONTSERRAT_20", &lv_font_montserrat_20 };
+        lv_obj_set_style_text_font(lable, &lv_font_montserrat_20, LV_PART_MAIN);
+    #endif
+    // lv_obj_set_style_text_font(lable, &lv_font_montserrat_20, LV_PART_MAIN);
     lv_label_set_text(lable, "WiFi");
     lv_obj_align(lable, LV_ALIGN_TOP_MID, 0, 3);
 
