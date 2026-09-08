@@ -6,9 +6,9 @@ const char *TAG = "factory";
 
 i2c_master_bus_handle_t i2c_bus_handle;
 
+// // esp_io_expander_handle_t expander_handle = NULL;
 esp_lcd_panel_io_handle_t io_handle = NULL;
 esp_lcd_panel_handle_t panel_handle = NULL;
-// // esp_io_expander_handle_t expander_handle = NULL;
 esp_lcd_touch_handle_t touch_handle = NULL;
 lv_disp_drv_t disp_drv;
 
@@ -19,6 +19,8 @@ bool touch_test_done = false;
 // sdmmc_card_t *card = NULL;
 int bk_brightness = 30;
 
+// int can_currentv = 0;
+
 temperature_sensor_handle_t temp_sensor = NULL;
 lv_obj_t *label_brightness;
 lv_obj_t *label_flash;
@@ -26,6 +28,7 @@ lv_obj_t *label_psram;
 lv_obj_t *label_chip_temp;
 lv_obj_t *label_chip_freq;
 // lv_obj_t *label_sd;
+// lv_obj_t *label_can_current;
 
 uint32_t flash_size;
 uint32_t cpu_freq;
@@ -87,99 +90,12 @@ static void btn_test_event_handler(lv_event_t *e)
     }
 }
 
-
-
-void system_init(void)
-{
-    esp_flash_get_size(NULL, &flash_size);
-    // lv_label_set_text_fmt(label_flash, "%d MB", (int)(flash_size / 1024 / 1024));
-
-    cpu_freq = esp_clk_cpu_freq();
-    // lv_label_set_text_fmt(label_chip_freq, "%d MHz", (int)(cpu_freq / 1000 / 1000));
-
-    temperature_sensor_config_t temp_sensor_config = TEMPERATURE_SENSOR_CONFIG_DEFAULT(10, 80);
-    temperature_sensor_install(&temp_sensor_config, &temp_sensor);
-    temperature_sensor_enable(temp_sensor);
-    // temperature_sensor_handle_t tsens = temp_sensor;
-}
-
-void tile_init(lv_obj_t *parent)
-{
-    /*Create a list*/
-    lv_obj_t *list = lv_list_create(parent);
-    lv_obj_t *lable = lv_label_create(parent);
-    // lv_obj_set_style_text_font(lable, &lv_font_montserrat_16, LV_PART_MAIN);
-    // lv_obj_set_style_text_font(lable, &lv_font_montserrat_14, LV_PART_MAIN);
-    #if LV_FONT_MONTSERRAT_14
-        lv_obj_set_style_text_font(lable, &lv_font_montserrat_14, LV_PART_MAIN);
-    #endif
-    #if LV_FONT_MONTSERRAT_16
-        lv_obj_set_style_text_font(lable, &lv_font_montserrat_16, LV_PART_MAIN);
-    #endif
-    #if LV_FONT_MONTSERRAT_20
-        lv_obj_set_style_text_font(lable, &lv_font_montserrat_20, LV_PART_MAIN);
-    #endif
-    lv_label_set_text(lable, "System");
-    lv_obj_align(lable, LV_ALIGN_TOP_MID, 0, 3);
-
-    lv_obj_set_size(list, lv_pct(95), lv_pct(80));
-    lv_obj_align(list, LV_ALIGN_TOP_MID, 0, 30);
-
-    lv_obj_t *btn = lv_btn_create(parent);
-    lable = lv_label_create(btn);
-    lv_label_set_text(lable, "ES8311 Test");
-    lv_obj_center(lable);
-    lv_obj_align(btn, LV_ALIGN_BOTTOM_MID, -120, -15);
-    lv_obj_add_event_cb(btn, btn_test_event_handler, LV_EVENT_CLICKED, NULL);
-
-    lv_obj_t *slider = lv_slider_create(parent);
-    lv_slider_set_range(slider, 1, 100);
-    lv_slider_set_value(slider, bk_brightness, LV_ANIM_OFF);
-
-    lv_obj_set_size(slider, lv_pct(50), lv_pct(5));
-    lv_obj_align(slider, LV_ALIGN_BOTTOM_MID, 75, -18);
-    lv_obj_add_event_cb(slider, brightness_slider_event_cb, LV_EVENT_VALUE_CHANGED, NULL);
-
-    lv_obj_t *list_item;
-    list_item = lv_list_add_btn(list, NULL, "ChipType");
-    lv_obj_t *label_chip = lv_label_create(list_item);
-    lv_label_set_text(label_chip, "ESP32-S3");
-    
-    list_item = lv_list_add_btn(list, NULL, "Brightness");
-    label_brightness = lv_label_create(list_item);
-    lv_label_set_text_fmt(label_brightness, "%d %%", bk_brightness);
-
-    temperature_sensor_handle_t tsens = temp_sensor;
-    list_item = lv_list_add_btn(list, NULL, "ChipTemp");
-    label_chip_temp = lv_label_create(list_item);
-    float temp_value = 0.0f;
-    if (tsens != NULL && temperature_sensor_get_celsius(tsens, &temp_value) == ESP_OK) {
-        lv_label_set_text_fmt(label_chip_temp, "%.1f Â°C", temp_value);
-    } else {
-        lv_label_set_text(label_chip_temp, "--- Â°C");
-    }
-
-    list_item = lv_list_add_btn(list, NULL, "ChipFreq");
-    label_chip_freq = lv_label_create(list_item);
-    lv_label_set_text_fmt(label_chip_freq, "%d MHz", (int)(cpu_freq / 1000 / 1000));
-
-    list_item = lv_list_add_btn(list, NULL, "SRAM");
-    lv_obj_t *label_ram = lv_label_create(list_item);
-    lv_label_set_text(label_ram, "512 KB");
-
-    list_item = lv_list_add_btn(list, NULL, "Flash");
-    label_flash = lv_label_create(list_item);
-    lv_label_set_text_fmt(label_flash, "%d MB", (int)(flash_size / 1024 / 1024));
-
-    // list_item = lv_list_add_btn(list, NULL, "SDCard");
-    // label_sd = lv_label_create(list_item);
-    // lv_label_set_text(label_sd, "--- MB");
-}
-
-
 void app_main(void){
-
-    system_init();
+    can_init();
+    xTaskCreatePinnedToCore(can_receive_task, "can_rx", 4096, NULL, 5, NULL, 1);
+    xTaskCreatePinnedToCore(can_tx_task, "can_tx", 4096, NULL, 4, NULL, 1);
+    // xTaskCreate(can_receive_task, "can_rx", 4096, NULL, 5, NULL);
+    // xTaskCreate(can_tx_task, "can_tx", 4096, NULL, 4, NULL);
     
     ESP_LOGI(TAG, "Initialize backlight");
     gpio_set_direction(EXAMPLE_PIN_NUM_BACKLIGHT, GPIO_MODE_OUTPUT);
@@ -335,30 +251,31 @@ static void button_event_cb(void *arg, void *data)
     // touch_test_done = true;
     // Reset flag and enter touch test mode
 
-    // switch (event)
-    // {
-    // case BUTTON_LONG_PRESS_START:
-    //     touch_test_done = false;
-    //     if (lvgl_port_lock(0)) {
-    //         lv_obj_clean(lv_scr_act());
-    //         lvgl_port_unlock();
-    //         // then create new objects here
-    //     }
-    //     vTaskDelay(pdMS_TO_TICKS(100));
-    //     touch_test();
-    //     printf("Touch test started.\n");
-    //     return;
-    // case BUTTON_SINGLE_CLICK:
+    switch (event)
+    {
+    case BUTTON_LONG_PRESS_START:
+        // touch_test_done = false;
+        // if (lvgl_port_lock(0)) {
+        //     lv_obj_clean(lv_scr_act());
+        //     lvgl_port_unlock();
+        //     // then create new objects here
+        // }
+        // vTaskDelay(pdMS_TO_TICKS(100));
+        // touch_test();
+        // printf("Touch test started.\n");
+        esp_restart();
+        return;
+    case BUTTON_SINGLE_CLICK:
+        // touch_test_done = true;
+        printf("Long press to reset.\n");
+        return;
+    // case touch_test_done:
     //     touch_test_done = true;
     //     printf("Touch test completed.\n");
     //     return;
-    // // case touch_test_done:
-    // //     touch_test_done = true;
-    // //     printf("Touch test completed.\n");
-    // //     return;
-    // default:
-    //     break;
-    // }
+    default:
+        break;
+    }
 }
 
 void button_init(void)

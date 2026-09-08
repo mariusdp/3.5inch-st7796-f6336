@@ -8,6 +8,12 @@
 
 static int16_t currentScreen = -1;
 
+static void ui_tick_timer_cb(lv_timer_t *timer)
+{
+    LV_UNUSED(timer);
+    ui_tick();
+}
+
 static lv_obj_t *getLvglObjectFromIndex(int32_t index) {
     if (index == -1) {
         return 0;
@@ -24,6 +30,7 @@ void loadScreen(enum ScreensEnum screenId) {
 void ui_init() {
     create_screens();
     loadScreen(SCREEN_ID_MAIN);
+    lv_timer_create(ui_tick_timer_cb, 100, NULL);
 
 }
 

@@ -3,11 +3,11 @@
 **          and I2C touch controller FT6336           ***********
 *****************************************************************
 **** Screen:   *******************   Touch: *********************
-****    MOSI === 11     ***********     SCL === 7     ***********
+****    MOSI === 11     ***********     SCL === 9     ***********
 ****    CLK  === 12     ***********     SDA === 8     ***********
 ****    CS   === 10     ***********                   ***********
-****    DC   === 9      ***********                   ***********
-****    RST  === 5      ***********                   ***********  
+****    DC   === 13     ***********                   ***********
+****    RST  === 15     ***********                   ***********  
 ****    BL   === 6      ***********                   ***********
 *****************************************************************/
 #ifndef __COMMON_H__
@@ -15,7 +15,6 @@
 
 #include "esp_lcd_panel_ops.h"
 #include "esp_lcd_touch.h"
-
 
 #include "nvs_flash.h"
 #include "freertos/FreeRTOS.h"
@@ -40,6 +39,10 @@
 
 #include "controls.h"
 
+#include "driver/twai.h"
+#include "can_task.h"
+#include "esp_timer.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -51,7 +54,7 @@ extern "C" {
 
 // Touch Pins
 #define EXAMPLE_PIN_I2C_SDA GPIO_NUM_8
-#define EXAMPLE_PIN_I2C_SCL GPIO_NUM_7
+#define EXAMPLE_PIN_I2C_SCL GPIO_NUM_9 //GPIO_NUM_7
 
 #define EXAMPLE_PIN_BUTTON GPIO_NUM_0
 
@@ -66,7 +69,7 @@ extern "C" {
 #endif
 
 #define LCD_BUFFER_SIZE EXAMPLE_LCD_H_RES *EXAMPLE_LCD_V_RES / 8
-// #define LCD_BUFFER_SIZE (EXAMPLE_LCD_H_RES * 20)  // or 30, not 320*480/8
+// #define LCD_BUFFER_SIZE (EXAMPLE_LCD_H_RES * 20)  // or 30
 
 #define I2C_PORT_NUM 0
 

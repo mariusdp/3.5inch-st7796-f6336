@@ -10,5 +10,7 @@ extern lv_obj_t *label_lcd_bkl;
 extern lv_obj_t *label_lcd_bkl2;
 void lcdbkl_event_cb(lv_event_t *e);
 void can_event_handler(lv_event_t *e);
+void update_textarea_float(lv_obj_t *textarea, float value, const char *unit);
+
 
 #endif

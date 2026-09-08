@@ -2,6 +2,7 @@
 #include "screens.h"
 
 int lcd_bkl = 30;
+// int can_currentv = 0;
 lv_obj_t *label_lcd_bkl = NULL;
 lv_obj_t *label_lcd_bkl2 = NULL;
 
@@ -45,3 +46,12 @@ void lcdbkl_event_cb(lv_event_t *e)
     printf("Backlight brightness set to %d%%\n", value);
     #endif
 } 
+
+void update_textarea_float(lv_obj_t *textarea, float value, const char *unit)
+{
+    char text[24];
+    snprintf(text, sizeof(text), "%.1f%s%s", value, unit ? " " : "", unit ? unit : "");
+    if (strcmp(lv_textarea_get_text(textarea), text) != 0) {
+        lv_textarea_set_text(textarea, text);
+    }
+}

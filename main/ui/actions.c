@@ -22,6 +22,8 @@
 void action_main_dropdown_changed(lv_event_t * e)
 {
     lv_obj_t *dropdown = lv_event_get_target(e);
+    lv_event_code_t event = lv_event_get_code(e); // Get the event code
+    if (event != LV_EVENT_VALUE_CHANGED) return; // Only handle value changed events
 
     switch (lv_dropdown_get_selected(dropdown))
     {

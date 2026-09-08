@@ -1,5 +1,5 @@
 #include <string.h>
-
+#include "controls.h"
 #include "screens.h"
 #include "images.h"
 #include "fonts.h"
@@ -7,6 +7,7 @@
 #include "vars.h"
 #include "styles.h"
 #include "ui.h"
+#include "can_task.h"
 
 #include <string.h>
 
@@ -31,9 +32,11 @@ void create_screen_main() {
         lv_obj_t *parent_obj = obj;
         {
             lv_obj_t *obj = lv_label_create(parent_obj);
+            // objects.can_current = obj;
             lv_obj_set_pos(obj, 196, 152);
             lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
             lv_label_set_text_static(obj, "Hello, world!");
+            // update_textarea_float(obj, max_charge_current, "A");
         }
         {
             // header_1
@@ -75,9 +78,22 @@ void create_screen_main() {
         }
         {
             lv_obj_t *obj = lv_slider_create(parent_obj);
+            objects.bk_light = obj;
             lv_obj_set_pos(obj, 21, 201);
             lv_obj_set_size(obj, 429, 10);
             lv_slider_set_value(obj, 25, LV_ANIM_OFF);
+            lv_obj_add_event_cb(obj, lcdbkl_event_cb, LV_EVENT_VALUE_CHANGED, NULL);
+        }
+        {
+            // can_current
+            lv_obj_t *obj = lv_textarea_create(parent_obj);
+            objects.can_current = obj;
+            lv_obj_set_pos(obj, 166, 59);
+            lv_obj_set_size(obj, 150, 70);
+            lv_textarea_set_max_length(obj, 128);
+            update_textarea_float(obj, max_charge_current, "A");
+            lv_textarea_set_one_line(obj, true);
+            lv_textarea_set_password_mode(obj, false);
         }
     }
     
@@ -85,6 +101,8 @@ void create_screen_main() {
 }
 
 void tick_screen_main() {
+    update_textarea_float(objects.can_current, max_charge_current, "A");
+
     tick_user_widget_header(6);
 }
 
@@ -446,9 +464,11 @@ void create_screen_settings() {
                         }
                         {
                             lv_obj_t *obj = lv_slider_create(parent_obj);
+                            objects.bk_light = obj;
                             lv_obj_set_pos(obj, 180, 4);
                             lv_obj_set_size(obj, 150, 10);
                             lv_slider_set_value(obj, 25, LV_ANIM_OFF);
+                            lv_obj_add_event_cb(obj, lcdbkl_event_cb, LV_EVENT_VALUE_CHANGED, NULL);
                             lv_obj_set_style_clip_corner(obj, true, LV_PART_MAIN | LV_STATE_DEFAULT);
                         }
                         {

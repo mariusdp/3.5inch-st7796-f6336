@@ -29,6 +29,8 @@ typedef struct _objects_t {
     lv_obj_t *header_2;
     lv_obj_t *header_3;
     lv_obj_t *header_4;
+    lv_obj_t *bk_light;
+    lv_obj_t *can_current;
     lv_obj_t *ena_charge;
     lv_obj_t *ena_discharge;
     lv_obj_t *str_recovery;
